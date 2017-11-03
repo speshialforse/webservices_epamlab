@@ -46,6 +46,11 @@ public class Document {
 		return chapter;
 	}
 	
+	@Override
+	public String toString() {
+		
+		return id + " ; " + name + " ; " + chapters;
+	}
 	
 	@Override
 	public int hashCode() {
