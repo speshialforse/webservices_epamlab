@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://service.ws.wolterskluwer.by" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service.ws.wolterskluwer.by" xmlns:intf="http://service.ws.wolterskluwer.by" xmlns:tns1="http://exceptions.ws.wolterskluwer.by" xmlns:tns2="http://exceptions.rs.wolterskluwer.by" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://service.ws.wolterskluwer.by" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://exceptions.ws.wolterskluwer.by"/>
+   <import namespace="http://exceptions.rs.wolterskluwer.by"/>
+   <element name="getAverageResult">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="arr" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAverageResultResponse">
+    <complexType>
+     <sequence>
+      <element name="getAverageResultReturn" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="fault" type="tns1:WSWebserviceException"/>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://exceptions.rs.wolterskluwer.by" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://exceptions.ws.wolterskluwer.by"/>
+   <complexType name="ExceptionTrace">
+    <sequence>
+     <element name="trace" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://exceptions.ws.wolterskluwer.by" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://exceptions.rs.wolterskluwer.by"/>
+   <complexType name="WSWebserviceException">
+    <sequence>
+     <element name="exceptionTrace" nillable="true" type="tns2:ExceptionTrace"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getAverageResultRequest">
+
+      <wsdl:part element="impl:getAverageResult" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="WSWebserviceException">
+
+      <wsdl:part element="impl:fault" name="fault">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAverageResultResponse">
+
+      <wsdl:part element="impl:getAverageResultResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="AverageResultImpl">
+
+      <wsdl:operation name="getAverageResult">
+
+         <wsdl:input message="impl:getAverageResultRequest" name="getAverageResultRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAverageResultResponse" name="getAverageResultResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:WSWebserviceException" name="WSWebserviceException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="AverageResultImplSoapBinding" type="impl:AverageResultImpl">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getAverageResult">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAverageResultRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAverageResultResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="WSWebserviceException">
+
+            <wsdlsoap:fault name="WSWebserviceException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="AverageResultImplService">
+
+      <wsdl:port binding="impl:AverageResultImplSoapBinding" name="AverageResultImpl">
+
+         <wsdlsoap:address location="http://localhost:8081/webservices_task/services/AverageResultImpl"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
